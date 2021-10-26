@@ -1,6 +1,5 @@
 import { shallow } from 'enzyme'
 import PrimeraAppApp from '../../PrimeraApp'
-import '@testing-library/jest-dom'
 
 describe('Primer test', () => {
 	test('should', () => {
