@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Pruebas al componente GifExpertApp Debe de mostrar 2 hijos  1`] = `
+<Fragment>
+  <h2>
+    GifExpertApp
+  </h2>
+  <AddCategory
+    setCategories={[Function]}
+  />
+  <hr />
+  <ol>
+    <GifGrid
+      category="one punch"
+      key="one punch"
+    />
+    <GifGrid
+      category="goku"
+      key="goku"
+    />
+  </ol>
+</Fragment>
+`;
+
+exports[`Pruebas al componente GifExpertApp Match con snapshot 1`] = `
+<Fragment>
+  <h2>
+    GifExpertApp
+  </h2>
+  <AddCategory
+    setCategories={[Function]}
+  />
+  <hr />
+  <ol />
+</Fragment>
+`;

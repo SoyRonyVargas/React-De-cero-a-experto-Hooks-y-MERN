@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Probando el componente GifGrid Debe de mostrar items cuando se cargan imagenes 1`] = `
+<Fragment>
+  <h3
+    className="animate__animated animate__fadeIn"
+  >
+     
+    goku
+     
+  </h3>
+  <div
+    className="card-grid"
+  >
+    <GifGridItem
+      id={1}
+      key="1"
+      title="Hello"
+      url="https://www.udemy.com/staticx/udemy/images/v7/logo-udemy-inverted.svg"
+    />
+    <GifGridItem
+      id={2}
+      key="2"
+      title="Hello mario"
+      url="https://www.udemy.com/staticx/udemy/images/v7/logo-udemy-inverted.svg"
+    />
+    <GifGridItem
+      id={3}
+      key="3"
+      title="Hello mario"
+      url="https://www.udemy.com/staticx/udemy/images/v7/logo-udemy-inverted.svg"
+    />
+  </div>
+</Fragment>
+`;
+
+exports[`Probando el componente GifGrid Deberia generar el snapshot 1`] = `
+<Fragment>
+  <h3
+    className="animate__animated animate__fadeIn"
+  >
+     
+    goku
+     
+  </h3>
+  <p
+    className="animate__animated animate__flash"
+  >
+    Loading
+  </p>
+  <div
+    className="card-grid"
+  />
+</Fragment>
+`;

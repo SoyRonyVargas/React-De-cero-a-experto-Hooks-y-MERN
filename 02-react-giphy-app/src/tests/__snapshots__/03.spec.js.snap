@@ -4,7 +4,9 @@ exports[`Probando el addcategorie Haciendo snapshopt 1`] = `
 <form
   onSubmit={[Function]}
 >
-  <p>
+  <p
+    id="valor"
+  >
      
      
   </p>
