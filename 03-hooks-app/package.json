@@ -1,0 +1,31 @@
+{
+  "name": "vite-project",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview",
+    "test": "react-scripts test"
+  },
+  "dependencies": {
+    "enzyme-to-json": "^3.6.2",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "react-router-dom": "^6.2.1",
+    "react-scripts": "^5.0.0"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.16.2",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/react-hooks": "^7.0.2",
+    "@testing-library/user-event": "^7.1.2",
+    "@types/jest": "^27.4.1",
+    "@vitejs/plugin-react": "^1.0.0",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.6",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-scripts": "3.4.1",
+    "vite": "^2.6.4"
+  }
+}

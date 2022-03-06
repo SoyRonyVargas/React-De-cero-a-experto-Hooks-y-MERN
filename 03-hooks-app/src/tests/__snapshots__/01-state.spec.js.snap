@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Montando el proyecto montando el componente 1`] = `
+<Fragment>
+  <h1>
+    Counter1 
+    1
+  </h1>
+  <h1>
+    Counter2 
+    5
+  </h1>
+  <hr />
+  <button
+    className="btn btn-primary"
+    onClick={[Function]}
+  >
+    +1
+  </button>
+</Fragment>
+`;
