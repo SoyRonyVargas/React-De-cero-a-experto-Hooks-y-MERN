@@ -17,6 +17,12 @@ const useForm = () => {
     const handleSubmit = (e) => {
 
         e.preventDefault()
+
+        setValues({
+            name: '',
+            email: '',
+            password: ''
+        })
         
         console.log(values);
 

@@ -29,13 +29,11 @@ const useFetch = (url) => {
 
         const data = await response.json()
 
-        setTimeout( () => {
-            setState({
-                ...state,
-                data: data,
-                loading: false
-            })
-        }, 0)
+        setState({
+            ...state,
+            data: data,
+            loading: false
+        })
 
     }
 
