@@ -22,7 +22,7 @@ describe('Probando useCounter', () => {
 
         const { result } = renderHook( () => useCounter(100) )
 
-        const { counter , reset , increment , decrement } = result.current
+        const { counter } = result.current
         
         expect(counter).toBe(100)
         

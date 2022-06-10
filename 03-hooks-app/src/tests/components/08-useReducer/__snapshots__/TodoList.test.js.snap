@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`pruebas al componente <TodoList/> deberia mostrarse correctamente 1`] = `
+<ul
+  className="list-group list-group-flush col"
+>
+  <TodoListItem
+    desc="Aprender React ⚛"
+    handleDelete={[MockFunction]}
+    id={0}
+    index={0}
+    key="0"
+  />
+  <TodoListItem
+    desc="Comer 🍴"
+    handleDelete={[MockFunction]}
+    id={1}
+    index={1}
+    key="1"
+  />
+</ul>
+`;

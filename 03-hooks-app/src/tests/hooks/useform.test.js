@@ -3,11 +3,6 @@ import useForm from '../../hooks/useForm'
 
 describe('Pruebas en el hook useForm', () => { 
 
-    const initialForm = {
-        name: 'Mario',
-        email: 'marrano@gmail.com'
-    }
-
     test('Debe de retornar el formulario por defecto', () => { 
 
         const { result } = renderHook( () => useForm())

@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Probando el componente de <TodoListItem/> deberia mostrarse correctamente 1`] = `
+<li
+  className="d-flex align-items-center mb-2"
+  key="0"
+>
+  <p
+    className="todo_paragraph mb-0 mx-3"
+  >
+    1
+     - 
+    Aprender React ⚛
+  </p>
+  <div
+    className="button-group btn-group align"
+  >
+    <button
+      className="btn btn-danger btn-small btn-sm"
+      id="delete_todo"
+      onClick={[Function]}
+    >
+      Eliminar
+    </button>
+  </div>
+</li>
+`;

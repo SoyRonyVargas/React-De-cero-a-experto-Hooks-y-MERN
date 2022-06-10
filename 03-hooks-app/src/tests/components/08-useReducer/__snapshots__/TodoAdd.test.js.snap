@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Probando el componente <TodoAdd/> deberia mostrarse correctamente 1`] = `
+<div
+  className="col"
+>
+  <h3>
+    Agregar Todo
+  </h3>
+  <form>
+    <div
+      class="mb-3"
+    >
+      <textarea
+        className="form-control"
+        defaultValue=""
+        rows={3}
+      />
+    </div>
+    <button
+      className="btn btn-primary btn-small btn-sm"
+      type="submit"
+    >
+      Agregar
+    </button>
+  </form>
+</div>
+`;
