@@ -1,17 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Test a la app gif Tomando snapshot del componente 1`] = `
-<div
-  className="card animate__animated animate__fadeIn"
->
-  <img
-    alt="Titulo"
-    src="https://media1.giphy.com/media/l0HlJz7y7zqQkQq9m/giphy.gif"
-  />
-  <p>
-     
-    Titulo
-     
-  </p>
+<div>
+  <div
+    class="card animate__animated animate__fadeIn"
+  >
+    <img
+      alt="Titulo"
+      src="https://media1.giphy.com/media/l0HlJz7y7zqQkQq9m/giphy.gif"
+    />
+    <p>
+       
+      Titulo
+       
+    </p>
+  </div>
 </div>
 `;

@@ -1,19 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Probando el addcategorie Haciendo snapshopt 1`] = `
-<form
-  onSubmit={[Function]}
->
-  <p
-    id="valor"
+exports[`Probando el <Addcategorie/> Haciendo snapshot 1`] = `
+<div>
+  <form
+    aria-label="form"
   >
-     
-     
-  </p>
-  <input
-    onChange={[Function]}
-    type="text"
-    value=""
-  />
-</form>
+    <p
+      id="valor"
+    >
+       
+      
+       
+    </p>
+    <input
+      type="text"
+      value=""
+    />
+  </form>
+</div>
 `;

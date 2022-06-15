@@ -3,12 +3,10 @@ import PropTypes from 'prop-types';
 
 export const AddCategory = ({ setCategories }) => {
 
-    const [inputValue, setInputValue] = useState(''); // ''
+    const [inputValue, setInputValue] = useState('');
 
     const handleInputChange = ( e ) => {
         
-        console.log('handle llamado');
-
         setInputValue( e.target.value );
 
     }
@@ -16,8 +14,6 @@ export const AddCategory = ({ setCategories }) => {
     const handleSubmit = (e) => {
         
         e.preventDefault();
-
-        console.log('formulario prevenido' , inputValue);
 
         if ( inputValue.trim().length > 2 ) {
             setCategories( cats => [ inputValue, ...cats, ] );
@@ -27,7 +23,7 @@ export const AddCategory = ({ setCategories }) => {
     }
 
     return (
-        <form onSubmit={ handleSubmit }>
+        <form aria-label='form' onSubmit={ handleSubmit }>
             <p id="valor"> { inputValue } </p>
             <input 
                 type="text"
