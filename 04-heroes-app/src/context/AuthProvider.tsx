@@ -5,35 +5,46 @@ import { types } from '../types';
 
 interface AuxProps {
     children: React.ReactNode;
+    initial?: any
 }
 
-const init = () => {
+const AuthProvider : FC<AuxProps> = ({ children , initial = {} }) => {
 
-    try
-    {
-        
-        const user = JSON.parse(window.localStorage.getItem('user') || "") 
+    const init = () => {
 
-        return {
-            logged: !!user,
-            username: user?.username
+        try
+        {
+            
+            const user = JSON.parse(window.localStorage.getItem('user') || "") 
+    
+            if( initial === {} )
+            {
+                
+                console.log("entre");
+                
+                return {
+                    logged: !!user,
+                    username: user?.username
+                }
+
+            }
+    
+            return initial
+
         }
-
-    }
-    catch(er)
-    {
-        
-        return {
-            logged: false,
-            username: null
+        catch(er)
+        {
+            
+            return {
+                logged: false,
+                username: null
+            }
+    
         }
-
+    
     }
-
-}
-
-const AuthProvider : FC<AuxProps> = ({ children }) => {
-  
+    
+    
     const [ state , dispatch ] = useReducer( AuthReducer , {} , init )
 
     const login = ( name : string ) => {
