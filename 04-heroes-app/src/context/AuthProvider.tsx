@@ -15,9 +15,9 @@ const AuthProvider : FC<AuxProps> = ({ children , initial = {} }) => {
         try
         {
             
-            const user = JSON.parse(window.localStorage.getItem('user') || "") 
+            const user = JSON.parse(window.localStorage.getItem('user')!) 
     
-            if( initial === {} )
+            if( initial )
             {
                 
                 console.log("entre");

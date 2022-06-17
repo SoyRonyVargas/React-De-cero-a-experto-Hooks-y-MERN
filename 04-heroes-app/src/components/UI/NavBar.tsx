@@ -65,14 +65,15 @@ export const Navbar = () => {
                     {
                         logged && 
                         <li
-                            className="nav-item nav-link "
+                            id='username'
+                            className="nav-item nav-link"
                         >
                             { username }
                         </li>
                     }
                     <button
                         onClick={handleLogout}
-                        className="btn nav-item nav-link"
+                        className="btn nav-item nav-link btn__logout"
                     >
                         Logout
                     </button>

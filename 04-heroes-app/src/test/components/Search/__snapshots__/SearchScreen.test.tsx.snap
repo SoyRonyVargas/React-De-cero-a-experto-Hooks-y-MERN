@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Pruebas al componente <SearchScreen/>  Debe de mostrarse correctamente 1`] = `
+<div>
+  <div
+    class="row"
+  >
+    <div
+      class="col-5"
+    >
+      <h1>
+        Search
+      </h1>
+      <hr />
+      <form>
+        <div
+          class="mb-3"
+        >
+          <input
+            autocomplete="off"
+            class="form-control"
+            name="search"
+            placeholder="Search a hero..."
+            type="text"
+            value=""
+          />
+        </div>
+        <button
+          class="btn btn-primary"
+          type="submit"
+        >
+          Search
+        </button>
+      </form>
+    </div>
+    <div
+      class="col-7"
+    >
+      <h1>
+        Results
+      </h1>
+      <hr />
+      <section
+        class=""
+      />
+    </div>
+  </div>
+</div>
+`;

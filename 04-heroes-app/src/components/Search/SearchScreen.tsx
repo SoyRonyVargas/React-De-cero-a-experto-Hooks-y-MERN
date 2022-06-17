@@ -66,7 +66,7 @@ const SearchScreen = () => {
         <section className=''>
           {  
             heroes.map( hero => 
-              <HeroCard auto={true} {...hero} />
+              <HeroCard key={hero.id} auto={true} {...hero} />
             )
           }
         </section>          

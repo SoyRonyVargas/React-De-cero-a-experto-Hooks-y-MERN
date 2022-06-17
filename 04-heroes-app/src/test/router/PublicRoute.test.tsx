@@ -1,9 +1,7 @@
-import { }
-import { Routes, Route, MemoryRouter } from "react-router-dom"
+import { render , screen } from '@testing-library/react'
 import { AuthContext } from "../../context/AuthContext"
 import PublicRoute from "../../router/PublicRoute"
-import { shallow } from 'enzyme'
-import React from "react"
+import { MemoryRouter, Route, Routes } from 'react-router-dom'
 
 describe('Pruebas al componente <PublicRoute/>', () => {
 
@@ -13,15 +11,15 @@ describe('Pruebas al componente <PublicRoute/>', () => {
             logged: false
         }
 
-        jest.spyOn(React, 'useContext').mockImplementation(() => (values));
-
-        const wrapper = shallow(
-            <PublicRoute>
-                <p>publica</p>
-            </PublicRoute>
+        render(
+            <AuthContext.Provider value={values}>
+                <PublicRoute>
+                    <p>publica</p>
+                </PublicRoute>
+            </AuthContext.Provider>
            )
 
-        expect(wrapper.find("p").contains("publica")).toBe(true)
+        expect( screen.getByText("publica") ).toBeTruthy()
 
     })
 
@@ -32,23 +30,25 @@ describe('Pruebas al componente <PublicRoute/>', () => {
             username: "auronplay"
         }
 
-        jest.spyOn(React, 'useContext').mockImplementation(() => (values));
-
-        const wrapper = shallow(
-            <MemoryRouter initialEntries={["/login"]}>
-                <Routes>
-                    <Route path="/login" element={
-                            <p>publica</p>
-                        }/>
-                    <Route path="/marvel" element={<h1>Marvel</h1>} />
-                </Routes>
-            </MemoryRouter>
+        render(
+            <AuthContext.Provider value={values}>
+                <MemoryRouter initialEntries={["/login"]}>
+                    <Routes>
+                        <Route path="/login" element={
+                            <PublicRoute>
+                                <p>publica</p>
+                            </PublicRoute>
+                            }/>
+                        <Route path="/marvel" element={<h1>Marvel</h1>} />
+                    </Routes>
+                </MemoryRouter>
+            </AuthContext.Provider>
         )
 
-        expect(wrapper.find('h1').contains("Marvel")).toBe(true)
+        expect(screen.getByText("Marvel")).toBeTruthy()
 
+        screen.debug()
+        
     })
 
 })
-
-export { }

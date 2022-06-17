@@ -1,5 +1,5 @@
 import LoginScreen from "../components/Login/LoginScreen"
-import DashboardRouter from './DashboardRouter.js'
+import DashboardRouter from './DashboardRouter'
 import PrivateRoute from "./PrivateRoute"
 import PublicRoute from "./PublicRoute"
 import {

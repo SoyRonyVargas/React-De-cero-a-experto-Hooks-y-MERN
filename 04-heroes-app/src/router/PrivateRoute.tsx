@@ -8,8 +8,6 @@ const PrivateRoute = ({ children } : any) => {
 
     const location = useLocation()
 
-    console.log(location);
-
     const route = location.pathname + location.search
 
     window.localStorage.setItem( 'url' , route )
