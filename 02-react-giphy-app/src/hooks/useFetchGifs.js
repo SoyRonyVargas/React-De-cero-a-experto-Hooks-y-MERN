@@ -18,6 +18,9 @@ export const useFetchGifs = ( category ) => {
                     loading: false
                 });
             })
+            .catch( err => {
+                throw new Error(err)
+            })
 
     }, [category])
 

@@ -1,5 +1,5 @@
+import { render , screen } from '@testing-library/react'
 import { GifGrid } from '../components/GifGrid'
-import { shallow } from 'enzyme'
 import React from 'react'
 import { useFetchGifs } from '../hooks/useFetchGifs'
 import '@testing-library/jest-dom'
@@ -35,9 +35,9 @@ describe('Probando el componente GifGrid', () => {
             }
         }) 
         
-        const wrapper = shallow(<GifGrid category={'goku'} />)
+        const { container } = render(<GifGrid category={'goku'} />)
 
-        expect(wrapper).toMatchSnapshot()
+        expect(container).toMatchSnapshot()
 
     })
 
@@ -50,20 +50,18 @@ describe('Probando el componente GifGrid', () => {
             }
         }) 
 
-        const wrapper = shallow(<GifGrid category={'goku'} />)
+        const { container } = render(<GifGrid category={'goku'} />)
 
         // BUSCAMOS QUE EL PARRAFO DE LOADING NO ESTE MONTADO
 
-        expect(wrapper.find('p').exists()).toBe(false)
+        const loader = container.querySelector("animate__flash")
+
+        const tot = screen.getAllByRole("img").length
+
+        expect( loader ).toBe( null )
+
+        expect( tot ).toBe(3)
         
-        // REVISAMOS QUE EL TOTAL DE ITEMS SEA IGUAL AL ARRAY
-
-        expect( wrapper.find('GifGridItem').length ).toBe(data.length)
-
-        expect(wrapper).toMatchSnapshot()
-
     })
     
-    
-
 })

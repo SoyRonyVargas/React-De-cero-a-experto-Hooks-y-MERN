@@ -1,23 +1,19 @@
-import { renderHook , act } from '@testing-library/react-hooks'
+import { renderHook , waitFor } from '@testing-library/react'
 import { useFetchGifs } from "../hooks/useFetchGifs"
 
 describe('Probando el custom hook', () => {
     
-    test('Debe de retornal el estado inicial', async () => {
+    test('Debe de retornar el estado inicial', async () => {
 
         const category = 'Goku'
 
-        const { result , waitForNextUpdate } = renderHook( () =>  useFetchGifs( category ))
+        const { result } = renderHook( () =>  useFetchGifs( category ))
 
-        await waitForNextUpdate()
+        const { data, loading } = result.current
 
-        const { data:images, loading } = result.current
-
-        console.log(images);
-
-        console.log(loading);
-
-        expect(loading).toBe(false)
+        expect(loading).toBe(true)
+        
+        expect(data.length).toBe(0)
         
     })
 
@@ -25,18 +21,15 @@ describe('Probando el custom hook', () => {
 
         const category = 'Goku'
 
-        const { result , waitForNextUpdate } = renderHook( () =>  useFetchGifs( category ))
+        const { result } = renderHook( () =>  useFetchGifs( category ))
 
-        await waitForNextUpdate()
+        await waitFor( () => expect(result.current.data.length).toBeGreaterThan(0) )
 
         const { data:images, loading } = result.current
 
-        console.log(images);
+        expect(loading).toBeFalsy()
 
-        console.log(loading);
-
-        expect(loading).toBe(false)
-        expect(images.length).toBe(10)
+        expect(images.length).toBeGreaterThan(0)
         
     })
     
