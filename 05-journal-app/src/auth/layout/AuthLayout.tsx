@@ -1,12 +1,10 @@
-import { Grid, Typography } from "@mui/material"
-import { FC } from 'react'
+import { Grid } from "@mui/material"
 
 type Props = {
     children: React.ReactNode,
-    title: string
 }
 
-const AuthLayout = ({ title , children } : Props ) => {
+const AuthLayout = ({ children } : Props ) => {
     return (
         <Grid
             container
@@ -31,13 +29,6 @@ const AuthLayout = ({ title , children } : Props ) => {
                     padding: 3,
                     borderRadius: 2
                 }}>
-
-                <Typography
-                    variant="h5"
-                    sx={{ mb: 1 }}
-                >
-                    { title }
-                </Typography>
 
                 { children }
 

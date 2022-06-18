@@ -4,7 +4,9 @@ import AuthLayout from '../layout/AuthLayout'
 
 const RegisterPage = () => {
   return (
-    <AuthLayout title="Registro">
+    <AuthLayout>
+      <img src="/images/logo.svg" className="logo__standard" alt="" />
+
       <form>
         <Grid container>
           <Grid item
