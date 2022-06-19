@@ -13,6 +13,14 @@
     margin: 0 auto;
     display: block;
 }
+.logo__no_selected__logo
+{
+    max-width: 250px;
+}
+.navbar__logo
+{
+    max-width: 200px;
+}
 
 @media screen and (max-width: 480px) {
     .logo__standard
