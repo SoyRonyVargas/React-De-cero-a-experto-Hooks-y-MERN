@@ -1,8 +1,12 @@
 import { Button, Grid, TextField, Typography, Link } from "@mui/material"
 import { Link as RouterLink } from 'react-router-dom'
 import { useForm } from "../../../../hooks/useForm"
+import { useAppDispatch } from "../../../../hooks"
+import { 
+    startCreatingUserWithEmailAndPassword 
+} from "../../../../store/auth/thunks"
 
-const formValidarions = {
+const formValidators = {
     email: [ ( value : string ) => value.includes("@") , "El correo debe de tener un arroba"],
     password: [ ( value : string ) => value.length >= 6 , "La contraseña debe de tener más de 6 letras"],
     displayName: [ ( value : string ) => value.length >= 1 , "El nombre es obligatorio"]
@@ -19,8 +23,23 @@ const FormRegister = () => {
     const { 
         onInputChange,
         formState,
-        errors 
-    } = useForm( initialState , formValidarions )
+        errors ,
+        submited,
+        handleSubmitForm,
+        isFormValid
+    } = useForm( initialState , formValidators )
+
+    const dispatch = useAppDispatch()
+
+    const handleSubmit = () => {
+
+        handleSubmitForm()
+
+        if( !isFormValid ) return;
+
+        dispatch(startCreatingUserWithEmailAndPassword(formState))
+
+    }
 
     return (
         <form>
@@ -29,6 +48,7 @@ const FormRegister = () => {
                     JSON.stringify( errors , null , 3 )
                 }
             </pre> */}
+            <h1> Valid { isFormValid ? " si" : "no" } </h1>
             <Grid container>
                 <Grid item
                     xs={12}
@@ -42,7 +62,7 @@ const FormRegister = () => {
                         placeholder="Tu nombre completo"
                         variant="outlined"
                         fullWidth
-                        error={!!errors?.displayName}
+                        error={!!errors?.displayName && submited}
                         onChange={onInputChange}
                         value={formState.displayName}
                         helperText={errors?.displayName}
@@ -60,7 +80,7 @@ const FormRegister = () => {
                         placeholder="correo@gmail.com"
                         variant="outlined"
                         fullWidth
-                        error={!!errors?.email}
+                        error={!!errors?.email && submited}
                         onChange={onInputChange}
                         value={formState.email}
                         helperText={errors?.email}
@@ -78,7 +98,7 @@ const FormRegister = () => {
                         placeholder="Tu contraseña"
                         variant="outlined"
                         fullWidth
-                        error={!!errors?.password}
+                        error={!!errors?.password && submited}
                         onChange={onInputChange}
                         value={formState.password}
                         helperText={errors?.password}
@@ -94,7 +114,12 @@ const FormRegister = () => {
             >
 
                 <Grid item xs={12} sm={12} sx={{ mt: 2 }}>
-                    <Button variant="contained" color="secondary" fullWidth>
+                    <Button 
+                        variant="contained" 
+                        color="secondary" 
+                        fullWidth
+                        onClick={handleSubmit}
+                    >
                         <Typography sx={{ ml: .5, textTransform: 'capitalize' }}>
                             Crear Cuenta
                         </Typography>
