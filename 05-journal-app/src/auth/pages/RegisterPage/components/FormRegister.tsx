@@ -1,7 +1,9 @@
-import { Button, Grid, TextField, Typography, Link } from "@mui/material"
+import { Button, Grid, TextField, Typography, Link, Alert } from "@mui/material"
+import { selectStatus , selectError } from "../../../../store/auth/authSlice"
 import { Link as RouterLink } from 'react-router-dom'
 import { useForm } from "../../../../hooks/useForm"
 import { useAppDispatch } from "../../../../hooks"
+import { useSelector } from 'react-redux'
 import { 
     startCreatingUserWithEmailAndPassword 
 } from "../../../../store/auth/thunks"
@@ -31,6 +33,9 @@ const FormRegister = () => {
 
     const dispatch = useAppDispatch()
 
+    const isChecking = useSelector(selectStatus)
+    const errorLogin = useSelector(selectError)
+
     const handleSubmit = () => {
 
         handleSubmitForm()
@@ -42,13 +47,7 @@ const FormRegister = () => {
     }
 
     return (
-        <form>
-            {/* <pre>
-                {
-                    JSON.stringify( errors , null , 3 )
-                }
-            </pre> */}
-            <h1> Valid { isFormValid ? " si" : "no" } </h1>
+        <form className="animate__animated animate__fadeIn animate__faster">
             <Grid container>
                 <Grid item
                     xs={12}
@@ -66,6 +65,7 @@ const FormRegister = () => {
                         onChange={onInputChange}
                         value={formState.displayName}
                         helperText={errors?.displayName}
+                        disabled={isChecking}
                     />
                 </Grid>
                 <Grid item
@@ -84,6 +84,7 @@ const FormRegister = () => {
                         onChange={onInputChange}
                         value={formState.email}
                         helperText={errors?.email}
+                        disabled={isChecking}
                     />
                 </Grid>
                 <Grid item
@@ -102,10 +103,18 @@ const FormRegister = () => {
                         onChange={onInputChange}
                         value={formState.password}
                         helperText={errors?.password}
+                        disabled={isChecking}
                     />
                 </Grid>
 
             </Grid>
+
+            {
+                errorLogin &&
+                <Alert sx={{ mt: 2 }} severity="error">
+                    { errorLogin }
+                </Alert>
+            }
 
             <Grid
                 container
@@ -119,6 +128,7 @@ const FormRegister = () => {
                         color="secondary" 
                         fullWidth
                         onClick={handleSubmit}
+                        disabled={isChecking}
                     >
                         <Typography sx={{ ml: .5, textTransform: 'capitalize' }}>
                             Crear Cuenta

@@ -1,16 +1,21 @@
-import { LogoutOutlined } from '@mui/icons-material';
-import { PropsSideBar } from '../types';
+import { startLogout } from "../../store/auth/thunks"
+import { LogoutOutlined } from '@mui/icons-material'
+import { useAppDispatch } from '../../hooks'
+import { PropsSideBar } from '../types'
 import {
   AppBar,
   Toolbar,
   Typography,
-  Button,
   IconButton,
 } from '@mui/material';
 
 export const NavBar = ( props: PropsSideBar ) => {
 
+  const dispatch = useAppDispatch()
+
   const { drawerWidth = 240 } = props
+
+  const handleLogout = () => dispatch(startLogout())
 
   return (
     <AppBar
@@ -21,15 +26,6 @@ export const NavBar = ( props: PropsSideBar ) => {
       }}
     >
       <Toolbar>
-        {/* <IconButton
-          size="large"
-          edge="start"
-          color="inherit"
-          aria-label="menu"
-          sx={{ mr: 2 }}
-        >
-          <MenuIcon />
-        </IconButton> */}
         <Typography 
           variant="h6" 
           component="div" 
@@ -42,7 +38,7 @@ export const NavBar = ( props: PropsSideBar ) => {
           <img src="/images/navbar2.svg" className='navbar__logo' alt="" />
         </Typography>
         
-        <IconButton color="inherit">
+        <IconButton onClick={handleLogout} color="inherit">
           <LogoutOutlined></LogoutOutlined>
         </IconButton>
 

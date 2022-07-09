@@ -26,7 +26,7 @@ const initialState: AuthState = {
     email: null,
     errorMessage: null,
     photoURL: null,
-    status: "not-authenticated",
+    status: "checking",
     uid: null
 }
 
@@ -45,7 +45,7 @@ export const authSlice = createSlice({
       state.status = "authenticated";
       state.uid = payload.uid!;
     },
-    logout: ( state , { payload } : PayloadAction<string> ) => {
+    logout: ( state , { payload } : PayloadAction<string | null> ) => {
       state.displayName = null;
       state.email = null;
       state.errorMessage = payload;
@@ -64,5 +64,6 @@ export const { login ,logout , checkingCredentials } = authSlice.actions
 // selectors
 
 export const selectStatus = ( state : RootState ) => state.auth.status === "checking"
-
+export const selectError = ( state : RootState ) => state.auth.errorMessage
+export const selectStatusAuth = ( state : RootState ) => state.auth.status
 export default authSlice.reducer
