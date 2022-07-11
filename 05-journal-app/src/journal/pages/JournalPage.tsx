@@ -1,18 +1,30 @@
-import { Typography } from "@mui/material"
-import JournalLayout from "../layout/JournalLayout"
-import NoteView from "../views/NoteView"
+import { selectIsNoteSelected } from "../../store/journal/journalSlice"
 import NothingSelectedView from "../views/NothingSelectedView"
+import JournalLayout from "../layout/JournalLayout"
+import AddButton from "../components/AddButton"
+import { useAppSelector } from "../../hooks"
+import NoteView from "../views/NoteView"
 
 const JournalPage = () => {
+
+  const isNoteSelected = useAppSelector(selectIsNoteSelected)
+
   return (
     <JournalLayout>
-      {/* <NothingSelectedView/> */}
-      <NoteView/>
-      {/* <Typography>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum reiciendis sunt in quas tenetur dicta aperiam voluptatum corrupti quibusdam, eligendi fuga neque, provident facilis! Amet libero ipsa obcaecati sint eaque.
-      </Typography> */}
+      
+      {
+        isNoteSelected
+        ?
+        <NoteView/>
+        :
+        <NothingSelectedView/>
+      }
+      
+      <AddButton/>
+    
     </JournalLayout>
   )
+
 }
 
 export default JournalPage

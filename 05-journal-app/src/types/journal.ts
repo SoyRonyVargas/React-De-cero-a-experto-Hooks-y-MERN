@@ -1,8 +1,8 @@
 export interface Note {
     title: string
     body: string
-    date: string
-    id: string
+    date: number
+    id?: string
 }
 
 export interface JournalState {

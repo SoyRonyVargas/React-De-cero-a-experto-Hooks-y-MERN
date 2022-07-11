@@ -7,7 +7,7 @@ type Props = {
 
 const JournalLayout = ( { children } : Props ) => {
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box sx={{ display: "flex" , position: "relative" }}>
         
         <SideBar/>
 

@@ -1,4 +1,5 @@
 import { login, logout, selectStatusAuth } from "../store/auth/authSlice"
+import { startGetNotes } from "../store/journal/thunks"
 import { onAuthStateChanged } from "firebase/auth"
 import { firebaseAuth } from '../firebase/config'
 import { useSelector } from "react-redux"
@@ -26,6 +27,8 @@ const useSession = () => {
                     uid,
                     ok: true
                 }))
+
+                dispatch(startGetNotes())
 
             }
             else

@@ -1,3 +1,6 @@
+import { selectAuthDisplayName } from '../../store/auth/authSlice'
+import { selectNotes } from '../../store/journal/journalSlice'
+import { useAppSelector } from '../../hooks'
 import { PropsSideBar } from '../types'
 import Journaltem from './Journaltem'
 import {
@@ -9,7 +12,12 @@ import {
     List
 } from '@mui/material'
 
+
 export const SideBar = ( { drawerWidth = 240 }: PropsSideBar ) => {
+    
+    const displayName = useAppSelector(selectAuthDisplayName)
+    const notes = useAppSelector(selectNotes)
+
   return (
     <Box
         component={"nav"}
@@ -29,7 +37,7 @@ export const SideBar = ( { drawerWidth = 240 }: PropsSideBar ) => {
 
             <Toolbar>
                 <Typography variant="h6">
-                    Mario Palacios
+                    { displayName }
                 </Typography>
             </Toolbar>
 
@@ -37,8 +45,11 @@ export const SideBar = ( { drawerWidth = 240 }: PropsSideBar ) => {
 
             <List>
                 {
-                    [ 1 , 2 , 3 , 4 ].map( journal => 
-                        <Journaltem key={journal} />
+                    notes.map( note => 
+                        <Journaltem 
+                            key={note.id} 
+                            {...note}
+                        />
                     )
                 }
             </List>

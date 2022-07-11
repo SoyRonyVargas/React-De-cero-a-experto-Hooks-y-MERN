@@ -66,4 +66,6 @@ export const { login ,logout , checkingCredentials } = authSlice.actions
 export const selectStatus = ( state : RootState ) => state.auth.status === "checking"
 export const selectError = ( state : RootState ) => state.auth.errorMessage
 export const selectStatusAuth = ( state : RootState ) => state.auth.status
+export const selectAuthDisplayName = ( state : RootState ) => state.auth.displayName
+
 export default authSlice.reducer
