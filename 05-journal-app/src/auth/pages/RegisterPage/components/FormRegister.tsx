@@ -14,14 +14,14 @@ const formValidators = {
     displayName: [ ( value : string ) => value.length >= 1 , "El nombre es obligatorio"]
 }
 
-const FormRegister = () => {
-    
-    const initialState = {
-        email: "",
-        password: "",
-        displayName: ""
-    }
+const initialState = {
+    email: "",
+    password: "",
+    displayName: ""
+}
 
+const FormRegister = () => {
+   
     const { 
         onInputChange,
         formState,

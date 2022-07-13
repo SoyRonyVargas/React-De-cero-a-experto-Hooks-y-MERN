@@ -1,5 +1,6 @@
 import { checkingCredentials, logout , login } from './authSlice'
 import { UserWithEmailAndPassword } from '../../auth/types'
+import { cleanLogout } from '../journal/journalSlice'
 import { AppDispatch } from "../store"
 import { 
     creatingUserWithEmailAndPassword,
@@ -49,6 +50,8 @@ export const startLogout = () => async ( dispatch : AppDispatch ) => {
     dispatch(checkingCredentials())
 
     await logoutFirebaseAuth()
+
+    dispatch(cleanLogout())
 
     return dispatch(logout(""))
 

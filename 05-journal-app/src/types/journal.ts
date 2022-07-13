@@ -3,6 +3,7 @@ export interface Note {
     body: string
     date: number
     id?: string
+    imageUrls: string[]
 }
 
 export interface JournalState {

@@ -15,6 +15,11 @@ const formValidators = {
     password: [ ( value : string ) => value.length > 0 , "Ingresa la contraseña"],
 }
 
+const initialState = {
+    email: "",
+    password: "",
+}
+
 const FormLogin = () => {
 
     const dispatch = useAppDispatch()
@@ -26,11 +31,6 @@ const FormLogin = () => {
 
         dispatch(checkGoogleAuth())        
 
-    }
-
-    const initialState = {
-        email: "",
-        password: "",
     }
 
     const { 
