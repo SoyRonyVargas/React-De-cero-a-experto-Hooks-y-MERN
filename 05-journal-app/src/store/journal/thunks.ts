@@ -2,6 +2,7 @@ import { addEmptyNote, setActiveNote , setImagesToNote, setNotes, setSaving , up
 import { collection, addDoc , doc, setDoc , deleteDoc } from "firebase/firestore/lite"
 import { uploadImage } from "../../journal/helpers/uploadImage"
 import { getNotes } from "../../journal/helpers/getNotes"
+import { ResponseCloudinary } from "../../journal/types"
 import { firebaseDB } from "../../firebase/config"
 import { AppDispatch, RootState } from "../store"
 import { Note } from "../../types"
@@ -106,14 +107,14 @@ export const startUpdateNote = () => async ( dispatch : AppDispatch ,  getState:
 }
 
 
-export const startUploadImages = ( files: FileList ) => async ( dispatch : AppDispatch ,  getState: () => RootState ) => {
+export const startUploadImages = ( files: FileList ) => async ( dispatch : AppDispatch ) => {
 
     try
     {
 
         dispatch(setSaving(true))
 
-        let promises : Promise<string>[] = []
+        let promises : Promise<ResponseCloudinary | null>[] = []
 
         for( let file of files )
         {
@@ -124,7 +125,18 @@ export const startUploadImages = ( files: FileList ) => async ( dispatch : AppDi
 
         console.log(responses);
 
-        dispatch(setImagesToNote(responses))
+        let stringsUrls : string[] = responses.map( resp => {
+
+            if( resp )
+            {
+                return resp.secure_url
+            }
+
+            return ""
+
+        })
+
+        dispatch(setImagesToNote(stringsUrls))
 
         dispatch(setSaving(false))
 

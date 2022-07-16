@@ -1,27 +1,6 @@
-export interface ResponseCloudinary {
-    asset_id:          string;
-    public_id:         string;
-    version:           number;
-    version_id:        string;
-    signature:         string;
-    width:             number;
-    height:            number;
-    format:            string;
-    resource_type:     string;
-    created_at:        Date;
-    tags:              any[];
-    bytes:             number;
-    type:              string;
-    etag:              string;
-    placeholder:       boolean;
-    url:               string;
-    secure_url:        string;
-    folder:            string;
-    access_mode:       string;
-    original_filename: string;
-}
+import { ResponseCloudinary } from "../types"
 
-export const uploadImage = async ( image : File ) => {
+export const uploadImage = async ( image : File ) : Promise<ResponseCloudinary | null> => {
 
     try
     {
@@ -39,16 +18,16 @@ export const uploadImage = async ( image : File ) => {
             body: formdata
         })
 
-        if( !response.ok ) throw new Error()
+        if( !response.ok ) return null;
 
         const cleanResponse : ResponseCloudinary = await response.json()
 
-        return cleanResponse.secure_url
+        return cleanResponse
 
     }
     catch(err)
     {
-        throw new Error()
+        return null;
     }
 
 }
