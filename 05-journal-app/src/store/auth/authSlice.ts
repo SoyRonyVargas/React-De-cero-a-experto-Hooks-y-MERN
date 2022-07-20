@@ -53,15 +53,13 @@ export const authSlice = createSlice({
       state.status = "not-authenticated";
       state.uid = null;
     },
-    checkingCredentials: ( state ) => {
+    checkingAuthentication: ( state ) => {
       state.status = "checking"
     }
   },
 })
 
-export const { login ,logout , checkingCredentials } = authSlice.actions
-
-// selectors
+export const { login ,logout , checkingAuthentication } = authSlice.actions
 
 export const selectStatus = ( state : RootState ) => state.auth.status === "checking"
 export const selectError = ( state : RootState ) => state.auth.errorMessage

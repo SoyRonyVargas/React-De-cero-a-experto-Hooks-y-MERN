@@ -1,4 +1,4 @@
-import { checkingCredentials, logout , login } from './authSlice'
+import { checkingAuthentication, logout , login } from './authSlice'
 import { UserWithEmailAndPassword } from '../../auth/types'
 import { cleanLogout } from '../journal/journalSlice'
 import { AppDispatch } from "../store"
@@ -9,9 +9,15 @@ import {
     signInWithGoogle
 } from '../../firebase/providers'
 
+export const checkingCredentials = () => async ( dispatch : AppDispatch ) : Promise<void> => {
+
+    dispatch(checkingAuthentication())
+
+}
+
 export const checkGoogleAuth = () => async ( dispatch : AppDispatch ) => {
 
-    dispatch(checkingCredentials())
+    dispatch(checkingAuthentication())
     
     const result = await signInWithGoogle()
 
@@ -23,7 +29,7 @@ export const checkGoogleAuth = () => async ( dispatch : AppDispatch ) => {
 
 export const startCreatingUserWithEmailAndPassword = ( user : UserWithEmailAndPassword ) => async ( dispatch : AppDispatch ) => {
 
-    dispatch(checkingCredentials())
+    dispatch(checkingAuthentication())
     
     const result = await creatingUserWithEmailAndPassword( user )
 
@@ -47,7 +53,7 @@ export const checkAuthWithEmailAndPassword = ( user : UserWithEmailAndPassword )
 
 export const startLogout = () => async ( dispatch : AppDispatch ) => {
 
-    dispatch(checkingCredentials())
+    dispatch(checkingAuthentication())
 
     await logoutFirebaseAuth()
 
