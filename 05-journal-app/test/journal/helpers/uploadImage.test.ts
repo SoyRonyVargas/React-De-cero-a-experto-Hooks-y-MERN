@@ -28,8 +28,7 @@ describe('Probando el helper para subir imagenes a cloudinary', () => {
 
         const responseDelete : any = await cloudinary.api.delete_resources( [ responseUpload?.public_id! ] )
 
-        console.log({responseDelete});
-        
+        // console.log({responseDelete});
 
     })
 

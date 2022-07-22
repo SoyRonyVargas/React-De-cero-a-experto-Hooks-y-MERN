@@ -41,7 +41,7 @@ export const startCreatingUserWithEmailAndPassword = ( user : UserWithEmailAndPa
 
 export const checkAuthWithEmailAndPassword = ( user : UserWithEmailAndPassword ) => async ( dispatch : AppDispatch ) => {
 
-    dispatch(checkingCredentials())
+    dispatch(checkingAuthentication())
     
     const result = await validateAuthWithEmailAndPassword( user )
 

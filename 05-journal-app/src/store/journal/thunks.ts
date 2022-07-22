@@ -62,9 +62,9 @@ export const startCreateNote = () => async ( dispatch : AppDispatch ,  getState:
         dispatch(setSaving(false))
 
     } 
-    catch (error) 
+    catch ( error : any )
     {
-        console.log(error);
+        throw new Error(error)
     }
 
 }
