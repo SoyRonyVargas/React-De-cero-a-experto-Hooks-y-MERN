@@ -1,10 +1,8 @@
-import LoginPage from './auth/pages/LoginPage'
+import AppRouter from './router/AppRouter';
 import React from 'react'
 function App() {
   return (
-    <div>
-      <LoginPage/>
-    </div>
+    <AppRouter/>
   );
 }
 

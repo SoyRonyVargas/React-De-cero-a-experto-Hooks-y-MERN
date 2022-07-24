@@ -2,6 +2,18 @@
 {
   background-color: #DF7575 !important; 
 }
+.is-secondary
+{
+  background-color: #9c5252 !important;
+}
+.rbc-today
+{
+  background-color: #ffe1e1 !important;
+}
+.color-white
+{
+  color: white;
+}
 .color-1
 {
   color: #DF7575;

@@ -1,5 +1,9 @@
 import styled from 'styled-components'
 
+export const LeftSide = styled.article`
+    background: #9c5252;
+`
+
 export const BoxLogin = styled.section`
     background-color: #fff;
     border-radius: 6px;
@@ -21,4 +25,16 @@ export const ContainerLoginPage = styled.section`
     display: grid;
     height: 100vh;
     grid-template-columns: 55% 45%;
+    @media screen and (max-width: 768px){
+        grid-template-columns: 100%;
+        ${LeftSide}
+        {
+            display: none;
+            background-color: red !important;
+        }
+        ${FormBox}
+        {
+            width: 90%;
+        }
+    }
 `
