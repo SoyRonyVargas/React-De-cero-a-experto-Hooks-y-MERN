@@ -1,3 +1,11 @@
+.modal-card
+{
+  top: 2.5%;
+}
+.show-modal
+{
+  display: block !important;
+}
 .is-primary
 {
   background-color: #DF7575 !important; 
