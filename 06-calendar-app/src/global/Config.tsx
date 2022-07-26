@@ -1,11 +1,15 @@
 import { BrowserRouter } from 'react-router-dom'
+import { Provider } from 'react-redux'
+import { store } from '../store'
 import React from 'react'
 
-const GlobalHoc = ({ children } : any ) => {
+const GlobalHoc = ({ children } : any) => {
   return (
-    <BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
         { children }
-    </BrowserRouter>
+      </BrowserRouter>
+    </Provider>
   )
 }
 

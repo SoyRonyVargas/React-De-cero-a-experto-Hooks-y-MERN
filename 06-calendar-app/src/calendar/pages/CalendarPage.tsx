@@ -1,6 +1,7 @@
+import FabCreateButton from '../components/FabCreateButton'
+import FabDeleteButton from '../components/FabDeleteButton'
 import CalendarLayout from '../layout/CalendarLayout'
 import Calendar from '../components/Calendar'
-import React from 'react'
 import ModalEvent from '../components/Modal'
 
 const CalendarPage = () => {
@@ -8,6 +9,8 @@ const CalendarPage = () => {
     <CalendarLayout>
       <ModalEvent/>
       <Calendar/>
+      <FabCreateButton/>
+      <FabDeleteButton/>
     </CalendarLayout>
   )
 }

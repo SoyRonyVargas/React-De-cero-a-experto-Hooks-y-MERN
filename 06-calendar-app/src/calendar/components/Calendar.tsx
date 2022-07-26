@@ -1,75 +1,31 @@
-import { Calendar as BigCalendar, EventPropGetter , View } from 'react-big-calendar'
-import { DoubleClickEvent, ReturnStyledEvent, TEvent, ViewEvent } from '../types'
 import { calendarLocalizer } from '../helpers/calendarLocalizer'
+import { Calendar as BigCalendar } from 'react-big-calendar'
 import "react-big-calendar/lib/css/react-big-calendar.css"
 import { getMessagesES } from '../helpers/getMessages'
-import React , { useState } from 'react'
+import useCalendar from '../hooks/useCalendar'
+import Event from './Event'
 
-const myEventsList: TEvent[] = [
-    {
-        title: "Pruebas a evento",
-        start: new Date(),
-        end: new Date(),
-        allDay: true
-    }
-]
-
+// const myEventsList: TEvent[] = [
+//     {
+//         title: "Pruebas a evento",
+//         start: new Date(),
+//         end: addDays( new Date() , 2 ),
+//         allDay: true,
+//         notes: "",
+//         _id: new Date().toString()
+//     }
+// ]
 
 const Calendar = () => {
 
-    const [ view , setView ] = useState<View>( ( window.localStorage.getItem("view") as View ) || "agenda" )
-    
-    const eventStyleGetter : EventPropGetter<TEvent> = ( event , start , end , isSelected ) : ReturnStyledEvent => {
-
-        return {
-            style: {
-                background: '#DF7575',
-                opacity: '.8'
-            }
-        }
-
-    }
-
-    const handleDoubleClick : DoubleClickEvent = ( event , element ) => {
-
-        console.log({ event , element });
-
-    }
-
-    const handleSelectEvent : DoubleClickEvent = ( event , element ) => {
-
-        console.log({ event , element });
-
-    }
-
-    const handleViewChange : ViewEvent = ( view ) => {
-
-        console.log('cambio');
-
-        console.log(view);
-
-        window.localStorage.setItem( "view", view )
-
-        setView(view)
-
-    }
-
-    const handleGetView = () : View | undefined =>  {
-
-        try
-        {
-
-            const view : View = ( window.localStorage.getItem("view") as View ) || "agenda"
-
-            return view
-
-        }
-        catch(err)
-        {
-            return "agenda"
-        }
-
-    }
+    const {
+        events,
+        eventStyleGetter,
+        handleDoubleClick,
+        handleSelectEvent,
+        handleViewChange,
+        view
+    } = useCalendar()
 
     return (
         <BigCalendar
@@ -77,7 +33,7 @@ const Calendar = () => {
             view={view}
             defaultView={'agenda'}
             localizer={calendarLocalizer}
-            events={myEventsList}
+            events={events}
             startAccessor="start"
             endAccessor="end"
             style={{ height: `calc( 100vh - 56px )` }}
@@ -86,6 +42,9 @@ const Calendar = () => {
             eventPropGetter={eventStyleGetter}
             onDoubleClickEvent={handleDoubleClick}
             onView={handleViewChange}
+            components={{
+                event: Event
+            }}
         />
     )
 }
