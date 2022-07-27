@@ -1,7 +1,8 @@
 import { validationResult } from "express-validator";
 import { TypedMiddleware } from "../types";
 
-export const MiddlewareValidator: TypedMiddleware = (req, res, next) => {
+export const MiddlewareValidator: TypedMiddleware<any> = (req, res, next) => {
+  
   const errors = validationResult(req);
 
   console.log(errors);
@@ -13,4 +14,5 @@ export const MiddlewareValidator: TypedMiddleware = (req, res, next) => {
   }
 
   next();
+
 };

@@ -1,14 +1,15 @@
+import { MiddlewareTokenValidator } from '../../middlewares/middlewareTokenValidator';
 import { AuthLogin , AuthRegister , RevalidateToken } from '../controllers'
+import { validatorAuthLogin , validatorAuthRegister } from '../validators';
 import { MiddlewareValidator } from '../../middlewares';
-import { validatorAuthLogin } from '../validators';
 import { Router } from 'express'
 
 const AuthRouter = Router()
 
-AuthRouter.post( '/new' , validatorAuthLogin , MiddlewareValidator , AuthLogin )
+AuthRouter.post( '/new' , validatorAuthRegister , MiddlewareValidator , AuthRegister )
 
-AuthRouter.post( '/register' , AuthRegister )
+AuthRouter.post( '/' , validatorAuthLogin , MiddlewareValidator , AuthLogin )
 
-AuthRouter.post( '/revalidate' , RevalidateToken )
+AuthRouter.post( '/validate' , MiddlewareTokenValidator ,RevalidateToken )
 
 export default AuthRouter
