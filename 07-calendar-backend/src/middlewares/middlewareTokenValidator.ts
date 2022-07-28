@@ -1,8 +1,9 @@
 import { validateJWT } from "../auth/helpers/validateJWT";
+import { JWTAuthPayload } from './../types/index';
 import { TypedMiddleware } from "../types";
 import { JwtPayload } from 'jsonwebtoken';
 
-export const MiddlewareTokenValidator: TypedMiddleware<JwtPayload> = ( req, res, next ) => {
+export const MiddlewareTokenValidator: TypedMiddleware<JWTAuthPayload> = ( req, res, next ) => {
   
     const token = req.headers["x-auth-token"]
 

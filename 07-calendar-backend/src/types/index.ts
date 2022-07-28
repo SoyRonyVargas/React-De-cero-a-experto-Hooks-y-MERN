@@ -20,9 +20,9 @@ type CustomRequest<T ,T2, TBody , PayloadType> = Request<T ,T2, TBody> & {
   }
 }
 
-export type TypedRequest<T , BodyRequest , PayloadBody = any> = (
+export type TypedRequest<T , BodyRequest , PayloadBody = any , ReqParams = any> = (
   ( 
-    req: CustomRequest<any , any, BodyRequest, PayloadBody> , 
+    req: CustomRequest<ReqParams , any, BodyRequest, PayloadBody> , 
     res: Response<BasicResponse<T>> , 
     next: NextFunction 
   ) => Promise<any>
@@ -39,7 +39,7 @@ export type TypedMiddleware<Payload> = (
 
 export interface BasicResponse<T> {
   ok: boolean
-  msg: string
+  msg?: string
   data: T
 }
 
