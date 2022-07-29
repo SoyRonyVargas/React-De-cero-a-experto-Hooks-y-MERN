@@ -1,6 +1,6 @@
 import { useState , useEffect , useMemo } from 'react';
 
-export const useForm = <T>( initialForm : T , validations : any = {} ) => {
+export const useForm = <T>( initialForm : T , validations : any = {} , cb : Function ) => {
   
     const [ formState, setFormState ] = useState<T>( initialForm );
     const [ submited , setSubmited ] = useState<boolean>(false)
@@ -10,6 +10,7 @@ export const useForm = <T>( initialForm : T , validations : any = {} ) => {
 
         createValidators()
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [formState])
     
     useEffect( () => {
@@ -59,17 +60,30 @@ export const useForm = <T>( initialForm : T , validations : any = {} ) => {
 
     }
 
-    const handleSubmitForm = () => setSubmited(true)
+    const handleSubmitForm = ( event : React.FormEvent<HTMLFormElement> ) => {
+
+        event.preventDefault()
+
+        handleSubmitedForm()
+
+        if( !isFormValid ) return
+        
+        cb()
+        
+    }
+
+    const handleSubmitedForm = () => setSubmited(true)
 
     return {
         ...formState,
-        formState,
+        errors,
         submited,
-        onInputChange,
-        handleSubmitForm,
+        formState,
         onResetForm,
         isFormValid,
-        errors
+        onInputChange,
+        handleSubmitForm,
+        handleSubmitedForm,
     }
     
 }

@@ -1,12 +1,13 @@
-// import type { PayloadAction } from '@reduxjs/toolkit'
 import { createSlice } from '@reduxjs/toolkit'
 
 export interface UIState {
   showModal: boolean
+  loader: boolean
 }
 
 const initialState: UIState = {
   showModal: false,
+  loader: false
 }
 
 export const UISlice = createSlice({
@@ -19,9 +20,15 @@ export const UISlice = createSlice({
     hideModal: (state) => {
       state.showModal = false
     },
+    showLoader: ( state ) => {
+      state.loader = true
+    },
+    hideLoader: ( state ) => {
+      state.loader = false
+    }
   },
 })
 
-export const { showModal , hideModal } = UISlice.actions
+export const { showModal , hideModal, showLoader , hideLoader } = UISlice.actions
 
 export default UISlice

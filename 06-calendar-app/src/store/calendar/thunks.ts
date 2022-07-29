@@ -11,14 +11,12 @@ export const hideModalUI = () : ThunkFunction => async ( dispatch ) => {
 
 }  
 
-export const createNewEvent = ( event : TEvent ) : ThunkFunction => async ( dispatch , getState ) => {
+export const createNewEvent = ( event : TEvent ) : ThunkFunction => async ( dispatch ) => {
 
     try
     {
 
         dispatch(setLoading())
-        
-        const state = getState()
         
         dispatch(onAddNewEvent({
             ...event,
@@ -39,15 +37,13 @@ export const createNewEvent = ( event : TEvent ) : ThunkFunction => async ( disp
 
 }
 
-export const thunkEditEvent = ( newPayload : TEvent ) : ThunkFunction => async ( dispatch , getState ) => {
+export const thunkEditEvent = ( newPayload : TEvent ) : ThunkFunction => async ( dispatch ) => {
 
     try
     {
         
         dispatch(setLoading())
 
-        const state = getState()
-        
         dispatch(onEditEvent((newPayload)))
         
         setTimeout( () => {
