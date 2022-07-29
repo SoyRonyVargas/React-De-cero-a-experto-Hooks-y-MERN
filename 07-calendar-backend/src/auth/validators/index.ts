@@ -8,5 +8,5 @@ export const validatorAuthRegister : ValidationChain[] = [
 
 export const validatorAuthLogin : ValidationChain[] = [
     check("email" , "El correo es obligatorio").isEmail(),
-    check("password" , "La contraseña es obligatoria").isLength({ min: 6 })
+    check("password" , "La contraseña es obligatoria")
 ]

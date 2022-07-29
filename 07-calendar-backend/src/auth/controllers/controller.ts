@@ -1,7 +1,7 @@
+import { User , UserLogin, UserLoginResponse, UserResponse } from '../types/types';
 import { validatePassword } from './../helpers/validatePassword';
 import { encryptPassword } from '../helpers/encryptPassword';
 import { JWTAuthPayload, TypedRequest } from './../../types';
-import { User , UserLogin } from '../types/types';
 import { generateJWT } from './../helpers/jwt';
 import UserModel from '../../models/User';
 import { JwtPayload } from 'jsonwebtoken';
@@ -37,7 +37,7 @@ export const AuthRegister : TypedRequest<string | null , User> = async ( req , r
 
         res.status(201).json({
             ok: true,
-            msg: "Autenticado correctamente",
+            msg: "Registrado correctamente",
             data: NewUser.id
         })
 
@@ -56,7 +56,7 @@ export const AuthRegister : TypedRequest<string | null , User> = async ( req , r
 }
 
 
-export const AuthLogin : TypedRequest<string | null , UserLogin> = async ( req , res ) => {
+export const AuthLogin : TypedRequest<UserLoginResponse | null , UserLogin> = async ( req , res ) => {
 
     try
     {
@@ -93,10 +93,21 @@ export const AuthLogin : TypedRequest<string | null , UserLogin> = async ( req ,
 
         const token = await generateJWT(UserExist.id)
 
+        const user : UserResponse = {
+            email: UserExist.email,
+            name: UserExist.name,
+            id: UserExist.id,
+        }
+        
+        const response : UserLoginResponse = {
+            token,
+            user
+        }
+
         return res.status(200).json({
             ok: true,
             msg: "Autenticado correctamente",
-            data: token
+            data: response
         })
 
     }
@@ -113,16 +124,29 @@ export const AuthLogin : TypedRequest<string | null , UserLogin> = async ( req ,
 
 }
 
-export const RevalidateToken : TypedRequest<string , User , JWTAuthPayload> = async ( req , res ) => {
+export const RevalidateToken : TypedRequest<UserLoginResponse , User , JWTAuthPayload> = async ( req , res ) => {
 
     const { id } = req.payload!
     
     const revalidatedToken = await generateJWT( id )
 
+    const UserExist = await UserModel.findById(id)
+
+    if( !UserExist ) return
+
+    const user : UserResponse = {
+        email: UserExist.email,
+        name: UserExist.name,
+        id: UserExist.id,
+    }
+
     res.json({
         ok: true,
         msg: "Token revalidado",
-        data: revalidatedToken
+        data: {
+            token: revalidatedToken,
+            user: user
+        }
     })
 
 }
