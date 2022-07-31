@@ -4,7 +4,6 @@ import { encryptPassword } from '../helpers/encryptPassword';
 import { JWTAuthPayload, TypedRequest } from './../../types';
 import { generateJWT } from './../helpers/jwt';
 import UserModel from '../../models/User';
-import { JwtPayload } from 'jsonwebtoken';
 
 export const AuthRegister : TypedRequest<string | null , User> = async ( req , res ) => {
 
@@ -63,7 +62,7 @@ export const AuthLogin : TypedRequest<UserLoginResponse | null , UserLogin> = as
 
         const { email , password } = req.body
 
-        req.payload
+        const errorAuth = "Usuario o contraseña incorrectos."
 
         const UserExist = await UserModel.findOne({ email })
 
@@ -72,7 +71,7 @@ export const AuthLogin : TypedRequest<UserLoginResponse | null , UserLogin> = as
             
             return res.status(400).json({
                 ok: false,
-                msg: "Autenticacion fallida",
+                msg: errorAuth,
                 data: null
             })
 
@@ -85,18 +84,18 @@ export const AuthLogin : TypedRequest<UserLoginResponse | null , UserLogin> = as
             
             return res.status(400).json({
                 ok: false,
-                msg: "Autenticacion fallida",
+                msg: errorAuth,
                 data: null
             })
 
         }
 
-        const token = await generateJWT(UserExist.id)
+        const token = await generateJWT(UserExist._id)
 
         const user : UserResponse = {
             email: UserExist.email,
             name: UserExist.name,
-            id: UserExist.id,
+            _id: UserExist._id,
         }
         
         const response : UserLoginResponse = {
@@ -137,7 +136,7 @@ export const RevalidateToken : TypedRequest<UserLoginResponse , User , JWTAuthPa
     const user : UserResponse = {
         email: UserExist.email,
         name: UserExist.name,
-        id: UserExist.id,
+        _id: UserExist._id,
     }
 
     res.json({

@@ -1,6 +1,4 @@
-import { TypedRequest } from './../../types/index'
-import { User } from './../../auth/types/types'
-import { JWTAuthPayload } from '../../types'
+import { TypedRequest , JWTAuthPayload } from './../../types'
 import { Event , EventNew } from '../types'
 import EventModel from '../../models/Event'
 
@@ -34,6 +32,8 @@ export const CreateEvent : TypedRequest<Event | null, EventNew , JWTAuthPayload>
 
         const EventCreated = await NewEvent.save()
 
+        console.log(EventCreated)
+
         res.status(201).json({
             ok: true,
             msg: "Evento creado correctamente",
@@ -60,9 +60,9 @@ export const EditEvent : TypedRequest<Event | null, Event , JWTAuthPayload> = as
     try
     {
 
-        const { id } = req.body
+        const { _id } = req.body
 
-        const eventEdit = await EventModel.findById( id )
+        const eventEdit = await EventModel.findById( _id )
 
         if( !eventEdit || !req.payload )
         {
@@ -93,7 +93,7 @@ export const EditEvent : TypedRequest<Event | null, Event , JWTAuthPayload> = as
             user: id_user
         }        
 
-        const updatedEvent = await EventModel.findByIdAndUpdate( id , updateEvent , { new: true })
+        const updatedEvent = await EventModel.findByIdAndUpdate( _id , updateEvent , { new: true })
 
         return res.status(200).json({
             ok: true,

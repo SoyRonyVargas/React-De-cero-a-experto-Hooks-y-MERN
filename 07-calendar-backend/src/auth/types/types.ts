@@ -1,11 +1,11 @@
 export type User = {
-    id: string
+    _id: string
     name: string
     email: string
     password: string
 }
 
-export type UserLogin = Omit<User , 'name' | 'id'>
+export type UserLogin = Omit<User , 'name' | '_id'>
 
 export type UserResponse = Omit<User , 'password'>
 

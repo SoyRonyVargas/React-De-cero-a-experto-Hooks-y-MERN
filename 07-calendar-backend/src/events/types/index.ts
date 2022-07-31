@@ -1,7 +1,7 @@
 import { User } from "../../auth/types/types";
 
 export type Event = { 
-    id?: string
+    _id?: string
     title: string; 
     notes: string;
     start: Date; 

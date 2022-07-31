@@ -1,6 +1,5 @@
 import { Event } from './../events/types/index';
 import { Schema, model } from 'mongoose';
-import UserModel from './User';
 
 const EventSchema = new Schema<Event>({
     title: { 
@@ -28,14 +27,7 @@ const EventSchema = new Schema<Event>({
 
 EventSchema.method('toJSON',function(){
     
-    const { __v , _id , ...object } = this.toObject()
-
-    object.id = _id
-
-    // object.user = {
-    //     name: object.name,
-    //     id: object._id
-    // }
+    const { __v , ...object } = this.toObject()
 
     return object
 

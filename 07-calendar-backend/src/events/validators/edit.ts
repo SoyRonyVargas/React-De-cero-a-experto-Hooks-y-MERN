@@ -3,5 +3,5 @@ import { CreateEventValidator } from './create';
 
 export const EditEventValidator : ValidationChain[] = [
     ...CreateEventValidator,
-    check("id" , "Id no valido").not().isEmpty(),
+    check("_id" , "Id no valido").not().isEmpty(),
 ]
