@@ -26,6 +26,8 @@ export const thunkGetAllEvents = () : ThunkFunction => async ( dispatch , getSta
 
         dispatch(setEvents(events))
 
+        dispatch(hideLoading())
+
     } 
     catch (error) 
     {

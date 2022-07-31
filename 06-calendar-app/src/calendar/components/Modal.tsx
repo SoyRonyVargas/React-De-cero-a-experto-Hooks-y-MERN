@@ -12,8 +12,8 @@ const ModalEvent = () => {
         errors,
         submited,
         formState,
+        onInputChange,
         handleSubmitForm,
-        handleInputChange,
         handleInputDateChange,
     } = useModal()
 
@@ -45,15 +45,15 @@ const ModalEvent = () => {
             
                         {/* <pre>
                             {
-                                JSON.stringify( formState , null , 3 )
+                                JSON.stringify( submited , null , 3 )
                             }
-                        </pre> */}
+                        </pre>
                         
                         <pre>
                             {
                                 JSON.stringify( errors , null , 3 )
                             }
-                        </pre>
+                        </pre> */}
 
                         <div className="field mb-2">
                             <label className="label">Fecha y hora inicio</label>
@@ -110,10 +110,10 @@ const ModalEvent = () => {
                                     name="title"
                                     className="input"
                                     autoComplete="off" 
+                                    value={formState.title}
+                                    onChange={onInputChange}
                                     disabled={isLoadingModal}
                                     placeholder="Título del evento"
-                                    onChange={handleInputChange}
-                                    value={formState.title}
                                 />
                                 {
                                     (errors?.title && submited) &&
@@ -131,10 +131,16 @@ const ModalEvent = () => {
                                     name="notes"
                                     className="textarea" 
                                     disabled={isLoadingModal}
-                                    placeholder="Contenido..." 
-                                    onChange={handleInputChange}
+                                    onChange={onInputChange}
                                     value={formState.notes}
+                                    placeholder="Contenido..." 
                                 />
+                                {
+                                    (errors?.notes && submited) &&
+                                    <p className="help is-danger is-strong">
+                                        {errors?.notes}
+                                    </p>
+                                }
                             </div>
                         </div>
 

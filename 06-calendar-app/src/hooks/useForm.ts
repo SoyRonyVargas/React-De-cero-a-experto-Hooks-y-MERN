@@ -1,10 +1,11 @@
 import { useState , useEffect , useMemo } from 'react';
+import { FormDatePicker } from '../calendar/types';
 
 export const useForm = <T>( initialForm : T , validations : any = {} , cb : Function ) => {
   
     const [ formState, setFormState ] = useState<T>( initialForm );
     const [ submited , setSubmited ] = useState<boolean>(false)
-    const [ errors , setErrors ] = useState<T>();
+    const [ errors , setErrors ] = useState<{ [x:string]: string }>();
 
     useEffect( () => {
 
@@ -19,6 +20,14 @@ export const useForm = <T>( initialForm : T , validations : any = {} , cb : Func
 
     }, [initialForm])
 
+    useEffect( () => {
+
+        return () => {
+            setSubmited(false)
+        }
+
+    }, [])
+
     const isFormValid = useMemo( () => {
 
         if( !errors ) return false
@@ -32,12 +41,21 @@ export const useForm = <T>( initialForm : T , validations : any = {} , cb : Func
 
     } , [errors])
 
-    const onInputChange = ({ target } : React.ChangeEvent<HTMLInputElement> ) => {
+    const onInputChange = ({ target } : React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement> ) => {
         const { name, value } = target;
         setFormState({
             ...formState,
             [ name ]: value
         });
+    }
+
+    const handleInputDateChange: FormDatePicker = (date, name) => {
+
+        setFormState({
+            ...formState,
+            [name]: date
+        })
+
     }
 
     const onResetForm = () => {
@@ -69,6 +87,8 @@ export const useForm = <T>( initialForm : T , validations : any = {} , cb : Func
         if( !isFormValid ) return
         
         cb()
+
+        setSubmited(false)
         
     }
 
@@ -81,9 +101,11 @@ export const useForm = <T>( initialForm : T , validations : any = {} , cb : Func
         formState,
         onResetForm,
         isFormValid,
+        setFormState,
         onInputChange,
         handleSubmitForm,
         handleSubmitedForm,
+        handleInputDateChange
     }
     
 }

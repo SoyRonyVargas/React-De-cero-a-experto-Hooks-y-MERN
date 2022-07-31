@@ -63,14 +63,19 @@ export const calendarSlice = createSlice({
         state.events = state.events.filter( event => event._id !== payload._id )
         state.activeEvent = null
       }
+    },
+    onLogoutCalendar: ( state ) => {
+      state.activeEvent = null
+      state.events = []
     }
   },
 });
 
 export const {
+  clearActualEvent,
+  onLogoutCalendar,
   setActiveEvent,
   setVoidEvent,
-  clearActualEvent,
   onAddNewEvent,
   onDeleteEvent,
   onEditEvent,

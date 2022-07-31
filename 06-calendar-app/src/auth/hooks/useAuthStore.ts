@@ -1,8 +1,8 @@
 import { hideLoading, onAuthFailed, onLogin, onLogout, selectAuthError, selectAuthStatus, selectMsgAuth, setMsgOk, startLoading } from '../../store/auth/authSlice'
 import { AuthLogin, AuthRegister, FetchErrorSingle, Response, UserLoginResponse } from '../../types'
+import { onLogoutCalendar, thunkGetAllEvents } from '../../store/calendar'
 import { selectShowLoader } from '../../store/ui/selectors'
 import { thunkAuthLogin } from '../../store/auth/thunks'
-import { thunkGetAllEvents } from '../../store/calendar'
 import { removeToken } from '../helpers/removeToken'
 import { hideLoader, showLoader } from '../../store'
 import { checkToken } from '../helpers/checkToken'
@@ -56,7 +56,7 @@ const useAuthStore = () => {
 
             if( e.response )
             {
-                const { msg } = e.response.data
+                const { msg } = e.response.data || "Error del servidor"
                 
                 dispatch(onAuthFailed(msg))
                 
@@ -110,6 +110,8 @@ const useAuthStore = () => {
         removeToken()
 
         dispatch(onLogout(null))
+        
+        dispatch(onLogoutCalendar())
 
         dispatch(hideLoader())
 

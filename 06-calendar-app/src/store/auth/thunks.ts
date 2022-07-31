@@ -1,6 +1,7 @@
 import { UserLoginResponse , Response , AuthLogin, FetchErrorSingle } from "../../types";
 import { hideLoading, onAuthFailed, onLogin, startLoading } from "./authSlice";
 import { saveToken } from "../../auth/helpers/saveToken";
+import { thunkGetAllEvents } from "../calendar";
 import { ThunkFunction ,  } from "../../types";
 import AuthAxios from "../../api/auth";
 
@@ -19,6 +20,8 @@ export const thunkAuthLogin = ( user : AuthLogin ) : ThunkFunction => async ( di
 
         dispatch(onLogin(data.user))
 
+        dispatch(thunkGetAllEvents())
+
         dispatch(hideLoading())
 
     } 
@@ -28,7 +31,7 @@ export const thunkAuthLogin = ( user : AuthLogin ) : ThunkFunction => async ( di
 
         if( e.response )
         {
-            const { msg } = e.response.data
+            const { msg } = e.response.data || { msg: "Error del servidor" }
             
             dispatch(onAuthFailed(msg))
             
