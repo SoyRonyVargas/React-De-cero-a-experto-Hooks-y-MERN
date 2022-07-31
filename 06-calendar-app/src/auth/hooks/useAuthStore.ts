@@ -2,6 +2,7 @@ import { hideLoading, onAuthFailed, onLogin, onLogout, selectAuthError, selectAu
 import { AuthLogin, AuthRegister, FetchErrorSingle, Response, UserLoginResponse } from '../../types'
 import { selectShowLoader } from '../../store/ui/selectors'
 import { thunkAuthLogin } from '../../store/auth/thunks'
+import { thunkGetAllEvents } from '../../store/calendar'
 import { removeToken } from '../helpers/removeToken'
 import { hideLoader, showLoader } from '../../store'
 import { checkToken } from '../helpers/checkToken'
@@ -79,21 +80,25 @@ const useAuthStore = () => {
 
         if (!token) return dispatch(onLogout(null))
 
-        try {
+        try 
+        {
 
             dispatch(showLoader())
 
             const { data: { data } } = await AuthAxios.post<Response<UserLoginResponse>>('/auth/validate')
 
-            // await new Promise(resolve => setTimeout(resolve, 2000));
-
             dispatch(onLogin(data.user))
+            
+            dispatch(thunkGetAllEvents())
 
             dispatch(hideLoader())
 
         }
-        catch (err) {
-            dispatch(onLogout("Autenticación fallida"))
+        catch (err) 
+        { 
+            dispatch(onLogout("Sesión expirada."))
+            dispatch(hideLoader())
+            removeToken()
         }
 
     }

@@ -8,11 +8,12 @@ import Event from './Event'
 // const myEventsList: TEvent[] = [
 //     {
 //         title: "Pruebas a evento",
-//         start: new Date(),
-//         end: addDays( new Date() , 2 ),
-//         allDay: true,
+//         start: new Date( "2022-08-01T15:00:00.000Z"),
+//         end: new Date("2022-08-06T03:00:00.000Z"),
+//         allDay: false,
 //         notes: "",
-//         _id: new Date().toString()
+//         _id: new Date().toString(),
+//         id: new Date().toString()
 //     }
 // ]
 

@@ -1,12 +1,15 @@
-import AppRouter from './router/AppRouter';
-import React from 'react'
+import { ToastContainer } from 'react-toastify';
 import Loader from './auth/components/Loader';
+import AppRouter from './router/AppRouter';
+import React, { Fragment } from 'react'
+
 function App() {
   return (
-    <>
-    <Loader />
-    <AppRouter/>
-    </>
+    <Fragment>
+      <Loader />
+      <AppRouter/>
+      <ToastContainer/>
+    </Fragment>
   );
 }
 

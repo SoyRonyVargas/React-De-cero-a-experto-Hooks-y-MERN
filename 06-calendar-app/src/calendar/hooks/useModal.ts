@@ -16,8 +16,8 @@ const useModal = () => {
         start: new Date(),
         notes: "",
         title: "",
-        _id: null
     })
+    const [ submited, setFormSubmited ] = useState<boolean>(false)
     
     useEffect( () => {
 
@@ -59,6 +59,23 @@ const useModal = () => {
 
         event.preventDefault()
 
+        setFormSubmited(true)
+
+        if( !formState.start )
+        {
+            setErrors({
+                ...errors,
+                start: "La fecha inicial no es valida"
+            })
+
+            return
+        }
+
+        setErrors({
+            ...errors,
+            start: null
+        })
+
         const difference = differenceInSeconds( formState.end , formState.start )
 
         if( isNaN(difference) || difference <= 0 )
@@ -66,18 +83,42 @@ const useModal = () => {
             
             setErrors({
                 ...errors,
-                end: "La fecha es incorrecta"
+                end: "La fecha debe ser mayor a la actual"
             })
 
             return
 
         }
 
+        setErrors({
+            ...errors,
+            end: null
+        })
+        
+        if( formState.title.length === 0 )
+        {
+            
+            setErrors({
+                ...errors,
+                title: "Ingresa el titulo"
+            })
+
+            return
+
+        }
+
+        setErrors({
+            ...errors,
+            title: null
+        })
+
         startSavingEvent(formState)
 
     }
 
     return {
+        errors,
+        submited,
         formState,
         handleSubmitForm,
         handleInputChange,

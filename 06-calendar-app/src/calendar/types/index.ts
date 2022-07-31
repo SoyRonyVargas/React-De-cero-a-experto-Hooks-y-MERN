@@ -1,12 +1,13 @@
 import { View } from 'react-big-calendar'
 
 export type TEvent = { 
-    _id: string | null;
+    _id?: string | null;
+    id?: string | null;
     allDay: boolean;
     title: string; 
     notes: string;
     start: Date; 
-    end: Date; 
+    end: Date;
 };
 
 export type DoubleClickEvent = (

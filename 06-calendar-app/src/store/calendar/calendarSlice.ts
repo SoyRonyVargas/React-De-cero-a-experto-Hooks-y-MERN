@@ -27,6 +27,9 @@ export const calendarSlice = createSlice({
     setActiveEvent: (state, { payload }: PayloadAction<TEvent>) => {
       state.activeEvent = payload;
     },
+    setEvents: (state, { payload }: PayloadAction<TEvent[]>) => {
+      state.events = payload;
+    },
     setVoidEvent: (state) => {
       state.activeEvent = {
         _id: null,
@@ -71,11 +74,10 @@ export const {
   onAddNewEvent,
   onDeleteEvent,
   onEditEvent,
+  hideLoading,
   setLoading,
-  hideLoading
+  setEvents
 } = calendarSlice.actions;
-
-// export const selectCount = (state: RootState) => state.calendar.value
 
 export default calendarSlice;
 

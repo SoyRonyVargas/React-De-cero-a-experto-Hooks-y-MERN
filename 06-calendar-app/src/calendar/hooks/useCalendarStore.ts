@@ -1,5 +1,5 @@
+import { createNewEvent , thunkEditEvent , thunkDeleteEvent, thunkGetAllEvents } from './../../store/calendar/thunks';
 import { selectActualEvent , selectEvents, selectLoading } from './../../store/calendar/selectors';
-import { createNewEvent , thunkEditEvent , thunkDeleteEvent } from './../../store/calendar/thunks';
 import { clearActualEvent, setActiveEvent, setVoidEvent } from '../../store/calendar';
 import { useAppSelector, useAppDispatch } from './../../hooks/index';
 import { TEvent } from './../types/index';
@@ -18,10 +18,17 @@ const useCalendarStore = () => {
 
     const handleCleanEvent = () => dispatch(clearActualEvent());
 
+    const getEvents = () => {
+
+        dispatch(thunkGetAllEvents())
+
+    }
+
     const startSavingEvent = ( event : TEvent ) => {
         
-        if( event._id === null )
+        if( !event._id )
         {
+            delete event._id
             dispatch(createNewEvent(event))
         }
         else
@@ -39,6 +46,7 @@ const useCalendarStore = () => {
 
     return {
         events,
+        getEvents,
         actualEvent,
         isLoadingModal,
         startSavingEvent,

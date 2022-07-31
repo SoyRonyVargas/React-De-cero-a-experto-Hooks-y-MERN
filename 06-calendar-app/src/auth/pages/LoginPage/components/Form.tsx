@@ -95,7 +95,8 @@ const Form = () => {
             {
                 hasErrorAuth && 
                 <div className="notification is-danger is-light">
-                    Usuario o contraseña incorrectos
+                    {/* Usuario o contraseña incorrectos */}
+                    { hasErrorAuth }
                 </div>
             }
 

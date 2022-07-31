@@ -36,6 +36,11 @@ export type UserLoginResponse = {
     user: User
 }
 
+export type EventCreatedResponse = {
+    token: string
+    user: User
+}
+
 export type Response<T> = {
     ok: boolean
     msg: string | null

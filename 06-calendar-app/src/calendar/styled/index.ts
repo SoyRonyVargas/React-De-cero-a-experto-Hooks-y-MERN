@@ -29,6 +29,6 @@ export const FabDeleteButtonWrapper = styled.div`
 `
 
 export const ImageLogoNavbar = styled.img`
-    width: 190px;
+    width: 160px;
     max-height: 57px !important;
 `
